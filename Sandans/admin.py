@@ -7,7 +7,7 @@ from Sandans.models import Sandan
 class SandanAdmin(UserAdmin):
     model = Sandan
     fieldsets = UserAdmin.fieldsets + \
-        ((None, {'fields': ('id', 'icon', 'links', 'books', 'waittime',)}),)
+        ((None, {'fields': ('icon', 'links', 'books', 'waittime',)}),)
     list_display = ["username"]
 
 

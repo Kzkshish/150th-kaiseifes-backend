@@ -6,8 +6,8 @@ import uuid
 
 
 class Sandan(AbstractUser):
-    id = models.CharField(primary_key=True, max_length=5)
-    icon = models.ImageField(null=True)
+    icon = models.ImageField(null=True, upload_to="icons/")
     links = ArrayField(base_field=models.URLField(), blank=True, null=True)
-    books = ArrayField(base_field=models.FileField(), blank=True, null=True)
+    books = models.FileField(
+        upload_to="books/", blank=True, null=True)
     waittime = models.IntegerField(default=0)
