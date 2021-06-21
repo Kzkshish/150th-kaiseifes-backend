@@ -2,4 +2,4 @@ venv
 __pycache__
 media
 ignore_files
-db_sqlite3
+db.sqlite3
