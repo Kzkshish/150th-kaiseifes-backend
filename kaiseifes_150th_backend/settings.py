@@ -80,6 +80,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': "kaiseifes_150th_backend",
+        #ローカル設定
+        'USER': "postgres",
+        'PASSWORD': "798kai31",
     }
 }
 
