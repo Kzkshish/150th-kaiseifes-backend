@@ -15,3 +15,7 @@ psql
 ```bash
 CREATE DATABASE kaiseifes_150th_backend
 ```
+
+### メモ
+ユーザー名=kaisei
+パスワード=kaiseifes150
