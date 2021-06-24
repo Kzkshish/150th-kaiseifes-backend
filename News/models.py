@@ -2,7 +2,7 @@ from django.db import models
 
 # Create your models here.
 
-#あとでタグ機能を作る
+# created_datetimeはこのままでいいのか？編集可能にした方がいいか？
 
 class Tag(models.Model):
     name = models.CharField(max_length = 20)
