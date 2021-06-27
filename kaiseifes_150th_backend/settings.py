@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     "rest_framework",
-    'Sandans', 'News', 'AdminControl'
+    'Sandans', 'News', 'AdminControl', 'Subscribers'
 ]
 
 MIDDLEWARE = [
@@ -81,7 +81,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': "kaiseifes_150th_backend",
-        
+
     }
 }
 
