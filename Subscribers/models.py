@@ -4,4 +4,5 @@ from django.db import models
 
 
 class Subscriber(models.Model):
+    name = models.CharField(blank=False, max_length=30)
     email = models.EmailField(blank=False, unique=True)

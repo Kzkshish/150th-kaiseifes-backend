@@ -4,5 +4,5 @@ from AdminControl.views import NewsCreateFormView
 
 app_name = "AdminControl"
 urlpatterns = [
-    path("admincontrol/postnews", NewsCreateFormView.as_view(), name="post_news")
+    path("admincontrol/postnews", NewsCreateFormView.as_view(), name="post_news"),
 ]
