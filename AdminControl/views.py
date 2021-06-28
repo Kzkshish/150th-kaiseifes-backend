@@ -12,6 +12,8 @@ from django.views.generic import CreateView, View, FormView
 from django.urls import reverse_lazy
 from django.contrib import messages
 from django.http import HttpResponseRedirect
+from django.core.mail import send_mass_mail
+
 
 from News.models import News
 from News.forms import NewsForm
@@ -30,22 +32,8 @@ class NewsCreateFormView(CreateView):
         news = form.save()
         messages.success(self.request, "お知らせを投稿しました。")
 
-        load_dotenv(verbose=True)
-        dotenv_path = os.path.join(os.path.dirname(__file__), '.env')
-        load_dotenv(dotenv_path)
-        gmail_account = "keigo0827511@gmail.com"
-        gmail_password = os.environ["MY_GMAIL_PASSWORD"]
-        sys.stdout = codecs.getwriter("utf-8")(sys.stdout)
-
-        for subscriber in Subscriber.objects.all():
-            msg = MIMEText(news.text, "html")
-            msg["Subject"] = news.title
-            msg["To"] = subscriber.email
-            msg["From"] = "150th KaiseiFes HP"
-            server = smtplib.SMTP_SSL(
-                "smtp.gmail.com", 465, context=ssl.create_default_context())
-            server.login(gmail_account, gmail_password)
-            server.send_message(msg)
+        send_mass_mail([(news.title, news.text, "150th KaiseiFes HP", (subscriber.email,))
+                       for subscriber in Subscriber.objects.all()])
         messages.success(self.request, "メールの送信が完了しました。")
 
         return HttpResponseRedirect(reverse('AdminControl:post_news'))

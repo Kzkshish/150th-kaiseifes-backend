@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
+from dotenv import load_dotenv
 import os
 from pathlib import Path
 
@@ -134,3 +135,15 @@ STATICFILES_DIRS = (
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
+# Mail
+load_dotenv(verbose=True)
+dotenv_path = os.path.join(os.path.dirname(
+    "/Users/keigokanda/dev/kaiseifes_150th_backend/ignore_files/quick.py"), '.env')
+load_dotenv(dotenv_path)
+
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_HOST_USER = "keigo0827511@gmail.com"
+EMAIL_HOST_PASSWORD = os.environ["MY_GMAIL_PASSWORD"]
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
