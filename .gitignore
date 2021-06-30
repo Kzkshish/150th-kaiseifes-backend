@@ -3,3 +3,5 @@ __pycache__
 media
 ignore_files
 db.sqlite3
+staticfiles
+config/local_settings.py

@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
+import dj_database_url
 from dotenv import load_dotenv
 import os
 from pathlib import Path
@@ -25,9 +26,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 't9weu^niz1b^!9t*t$-so$wx!&y=ztsaj#n-+p^%u3e!5$0a%7'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -75,6 +73,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'kaiseifes_150th_backend.wsgi.application'
 
+ALLOWED_HOSTS = ["kaiseifes-150th-backend.herokuapp.com"]
+
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
@@ -87,6 +87,8 @@ DATABASES = {
     }
 }
 
+db_from_env = dj_database_url.config()
+DATABASES['default'].update(db_from_env)
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
@@ -143,7 +145,19 @@ dotenv_path = os.path.join(os.path.dirname(
 load_dotenv(dotenv_path)
 
 EMAIL_HOST = "smtp.gmail.com"
-EMAIL_HOST_USER = "keigo0827511@gmail.com"
-EMAIL_HOST_PASSWORD = os.environ["MY_GMAIL_PASSWORD"]
+EMAIL_HOST_USER = "noreply.kaiseifes@gmail.com"
+EMAIL_HOST_PASSWORD = os.environ["150th_KOHO_GMAIL_PASSWORD"]
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
+
+
+DEBUG = False
+
+try:
+    from config.local_settings import *
+except ImportError:
+    pass
+
+if not DEBUG:
+    import django_heroku
+    django_heroku.settings(locals())
