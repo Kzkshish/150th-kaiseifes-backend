@@ -7,7 +7,7 @@ from rest_framework.response import Response
 from rest_framework.status import HTTP_200_OK
 
 from News.models import News, Tag
-from News.serializers import NewsSerializer
+from News.serializers import NewsSerializer, TagSerializer
 # Create your views here.
 
 
@@ -38,12 +38,14 @@ class NewsDetailAPIView(RetrieveAPIView):
     queryset = News.objects.all()
     serializer_class = NewsSerializer
 
-    def get(self, request, news_id):
-        news = get_object_or_404(News, id=news_id)
-        news_dict = {
-            "title": news.title,
-            "text": news.text,
-            "datetime": news.datetime,
-            "tag": [tag.id for tag in news.tag.all()]
-        }
-        return Response(data=news_dict, status=HTTP_200_OK)
+
+class TagDetailAPIView(RetrieveAPIView):
+    permission_classes = (AllowAny,)
+    queryset = Tag.objects.all()
+    serializer_class = TagSerializer
+
+
+class TagListAPIView(ListAPIView):
+    permission_classes = (AllowAny,)
+    queryset = Tag.objects.all()
+    serializer_class = TagSerializer

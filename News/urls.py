@@ -7,6 +7,9 @@ urlpatterns = [
     path('tag/<str:tag>/', views.tag, name='tag'),
     path('detail/<int:news_id/', views.detail, name='detail'),
     path("api/news/", views.NewsListAPIView.as_view(), name="news_list"),
-    path("api/news/<int:news_id>",
-         views.NewsDetailAPIView.as_view(), name="news_detail")
+    path("api/news/<int:pk>",
+         views.NewsDetailAPIView.as_view(), name="news_detail"),
+    path("api/news/tags/<int:pk>",
+         views.TagDetailAPIView.as_view(), name="tag_detail"),
+    path("api/news/tags", views.TagListAPIView.as_view(), name="tag_list")
 ]
