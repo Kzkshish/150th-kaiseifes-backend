@@ -13,7 +13,7 @@ from django.urls import reverse_lazy
 from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.core.mail import send_mass_mail
-
+from django.contrib.auth.decorators import user_passes_test
 
 from News.models import News
 from News.forms import NewsForm
@@ -37,15 +37,3 @@ class NewsCreateFormView(CreateView):
         messages.success(self.request, "メールの送信が完了しました。")
 
         return HttpResponseRedirect(reverse('AdminControl:post_news'))
-
-
-"""
-class NewsSendEmailView(DetailView):
-    form_class = NewsForm
-    template_name = "AdminControl/send_mail.html"
-    success_url = reverse_lazy('AdminControl:post_news')
-
-    def form_valid(self, form):
-        print(form.data)
-        return HttpResponseRedirect(reverse('AdminControl:send_mail'))
-"""
