@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
+import django_heroku
 import dj_database_url
 from dotenv import load_dotenv
 import os
@@ -154,10 +155,9 @@ EMAIL_USE_TLS = True
 DEBUG = False
 
 try:
-    from config.local_settings import *
+    from .local_settings import *
 except ImportError:
     pass
 
 if not DEBUG:
-    import django_heroku
     django_heroku.settings(locals())

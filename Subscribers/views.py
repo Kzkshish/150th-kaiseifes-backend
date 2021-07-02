@@ -1,3 +1,4 @@
+from django.core.mail import send_mail
 from django.shortcuts import render, get_object_or_404
 from django.contrib import messages
 
@@ -6,8 +7,9 @@ from rest_framework.views import APIView
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework.status import HTTP_201_CREATED, HTTP_204_NO_CONTENT
+from rest_framework.serializers import ModelSerializer
 
-from Subscribers.serializers import SubscriberSerializer
+from Subscribers.serializers import SubscriberSerializer, SubscriberDeleteSerializer
 from Subscribers.models import Subscriber
 
 # Create your views here.
@@ -22,11 +24,15 @@ class RegisterSubscribeAPIView(CreateAPIView):
         serializer = SubscriberSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.save()
+        with open("Subscribers/FirstTimeMail.txt", mode="r") as f:
+            first_time_message = f.read()
+        send_mail("150th開成祭 メルマガ登録のお知らせ", first_time_message,
+                  "150th KaiseiFes HP", (request.data["email"],))
         return Response(serializer.data, status=HTTP_201_CREATED)
 
 
 class CancelSubsclibeAPIView(DestroyAPIView):
-    serializer_class = SubscriberSerializer
+    serializer_class = SubscriberDeleteSerializer
     queryset = Subscriber.objects.all()
     permission_classes = (AllowAny,)
 

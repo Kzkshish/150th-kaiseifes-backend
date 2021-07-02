@@ -1,19 +1,9 @@
-import os
-import datetime
-import smtplib
-import ssl
-import sys
-import codecs
-from email.mime.text import MIMEText
-from dotenv import load_dotenv
-
 from django.shortcuts import render, reverse
 from django.views.generic import CreateView, View, FormView
 from django.urls import reverse_lazy
 from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.core.mail import send_mass_mail
-from django.contrib.auth.decorators import user_passes_test
 
 from News.models import News
 from News.forms import NewsForm
