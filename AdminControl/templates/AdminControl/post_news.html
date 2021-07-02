@@ -2,9 +2,20 @@
 {% block title %}150th開成祭 | お知らせを投稿{% endblock %}
 {% load widget_tweaks %}
 {% block content %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simplemde@latest/dist/simplemde.min.css">
+<script src="https://cdn.jsdelivr.net/npm/simplemde@latest/dist/simplemde.min.js"></script>
 <form action="" method="POST">
     {% csrf_token %}
     {{form.as_p}}
     <button type="submit">投稿</button>
 </form>
+<script>
+    const simplemde = new SimpleMDE({
+        element: document.getElementById("id_text"), spellChecker: false
+    });
+    simplemde.placeholder("本文");
+    function code_save() {
+        simplemde.codemirror.save();
+    }
+</script>
 {% endblock %}
