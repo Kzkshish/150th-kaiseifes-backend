@@ -1,6 +1,7 @@
 from django.core.mail import send_mail
 from django.shortcuts import render, get_object_or_404
 from django.contrib import messages
+from django.template.loader import render_to_string
 
 from rest_framework.generics import CreateAPIView, DestroyAPIView
 from rest_framework.views import APIView
@@ -24,10 +25,8 @@ class RegisterSubscribeAPIView(CreateAPIView):
         serializer = SubscriberSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.save()
-        with open("Subscribers/FirstTimeMail.txt", mode="r") as f:
-            first_time_message = f.read()
-        send_mail("150th開成祭 メルマガ登録のお知らせ", first_time_message,
-                  "150th KaiseiFes HP", (request.data["email"],))
+        send_mail(subject="150th開成祭 メルマガ登録のお知らせ",
+                  from_email="150th KaiseiFes HP", recipient_list=(request.data["email"],), html_message=render_to_string("Subscribers/FirstTimeMail.html"))
         return Response(serializer.data, status=HTTP_201_CREATED)
 
 

@@ -5,4 +5,5 @@ from Sandans.models import Sandan
 class SandanSerializer(serializers.ModelSerializer):
     class Meta:
         model = Sandan
-        fields = ("username","first_name", "icon", "links", "books", "waittime")
+        fields = ("username", "first_name", "icon",
+                  "links", "books", "waittime")
