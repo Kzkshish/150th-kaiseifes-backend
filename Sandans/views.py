@@ -16,6 +16,13 @@ class SandanListAPIView(ListAPIView):
     queryset = Sandan.objects.all()
     serializer_class = SandanSerializer
 
+    def get(self, request):
+        sandan_list = [[sandan.id, sandan.username, sandan.waittime]
+                       for sandan in Sandan.objects.filter(is_superuser=False)]
+        ret = [{"id": sandan[0], "name":sandan[1], "waittime":sandan[2]}
+               for sandan in sandan_list]
+        return Response(data=ret, status=HTTP_200_OK)
+
 
 class SandanWaittimeOrderAPIView(ListAPIView):
     permission_classes = (AllowAny,)
