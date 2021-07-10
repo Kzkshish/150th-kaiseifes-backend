@@ -14,7 +14,7 @@ class Tag(models.Model):
 
 class News(models.Model):
     title = models.CharField(blank=False, null=False, max_length=20)
-    text = models.TextField(blank=True)
+    text = models.TextField(blank=False)
     datetime = models.DateTimeField(auto_now=True)
     tag = models.ManyToManyField(Tag)
 

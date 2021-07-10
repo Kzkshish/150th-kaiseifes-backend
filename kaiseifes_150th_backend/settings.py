@@ -10,6 +10,8 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
+from django.conf.urls.static import static
+from django.conf import settings
 import django_heroku
 import dj_database_url
 from dotenv import load_dotenv
@@ -40,7 +42,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     "rest_framework",
     'widget_tweaks',
-    'Sandans', 'News', 'AdminControl', 'Subscribers'
+    'django_summernote', 'markdownx',
+    'Sandans', 'News', 'AdminControl', 'Subscribers',
 ]
 
 MIDDLEWARE = [
@@ -136,8 +139,11 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 MEDIA_URL = '/media/'
+
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
+X_FRAME_OPTIONS = "SAMEORIGIN"
 
 # Mail
 load_dotenv(verbose=True)
@@ -161,3 +167,5 @@ except ImportError:
 
 if not DEBUG:
     django_heroku.settings(locals())
+
+

@@ -4,6 +4,7 @@ from django.urls import reverse_lazy
 from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.core.mail import send_mass_mail
+from django.template.loader import render_to_string
 
 from News.models import News
 from News.forms import NewsForm
@@ -22,7 +23,7 @@ class NewsCreateFormView(CreateView):
         news = form.save()
         messages.success(self.request, "お知らせを投稿しました。")
 
-        send_mass_mail([(news.title, news.text, "150th KaiseiFes HP", (subscriber.email,))
+        send_mass_mail([(news.title, render_to_string(news.text), "150th KaiseiFes HP", (subscriber.email,))
                        for subscriber in Subscriber.objects.all()])
         messages.success(self.request, "メールの送信が完了しました。")
 
