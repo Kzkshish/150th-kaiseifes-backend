@@ -158,7 +158,7 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
 
-DEBUG = False
+DEBUG = True
 
 try:
     from .local_settings import *
