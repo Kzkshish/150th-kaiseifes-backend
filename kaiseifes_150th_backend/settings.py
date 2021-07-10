@@ -153,7 +153,7 @@ load_dotenv(dotenv_path)
 
 EMAIL_HOST = "smtp.gmail.com"
 EMAIL_HOST_USER = "noreply.kaiseifes@gmail.com"
-EMAIL_HOST_PASSWORD = os.environ["150th_KOHO_GMAIL_PASSWORD"]
+EMAIL_HOST_PASSWORD = "55Vancouver"
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
