@@ -10,12 +10,12 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
-import django_heroku
-import dj_database_url
-import os
 from django.conf.urls.static import static
 from django.conf import settings
+import django_heroku
+import dj_database_url
 from dotenv import load_dotenv
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -156,9 +156,13 @@ if not DEBUG:
     django_heroku.settings(locals())
 
 # Mail
+load_dotenv(verbose=True)
+dotenv_path = os.path.join(os.path.dirname(
+    "/Users/keigokanda/dev/kaiseifes_150th_backend/ignore_files/quick.py"), '.env')
+load_dotenv(dotenv_path)
 
 EMAIL_HOST = "smtp.gmail.com"
 EMAIL_HOST_USER = "noreply.kaiseifes@gmail.com"
-EMAIL_HOST_PASSWORD = os.environ["150th_KOHO_GMAIL_PASSWORD"]
+EMAIL_HOST_PASSWORD = "55Vancouver"
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
