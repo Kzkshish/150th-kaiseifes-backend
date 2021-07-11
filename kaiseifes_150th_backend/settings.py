@@ -10,12 +10,12 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
-from django.conf.urls.static import static
-from django.conf import settings
 import django_heroku
 import dj_database_url
-from dotenv import load_dotenv
 import os
+from django.conf.urls.static import static
+from django.conf import settings
+from dotenv import load_dotenv
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
