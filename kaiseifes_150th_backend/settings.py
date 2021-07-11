@@ -145,19 +145,6 @@ MEDIA_URL = '/media/'
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 X_FRAME_OPTIONS = "SAMEORIGIN"
 
-# Mail
-load_dotenv(verbose=True)
-dotenv_path = os.path.join(os.path.dirname(
-    "/Users/keigokanda/dev/kaiseifes_150th_backend/ignore_files/quick.py"), '.env')
-load_dotenv(dotenv_path)
-
-EMAIL_HOST = "smtp.gmail.com"
-EMAIL_HOST_USER = "noreply.kaiseifes@gmail.com"
-EMAIL_HOST_PASSWORD = os.environ["150th_KOHO_GMAIL_PASSWORD"]
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-
-
 DEBUG = False
 
 try:
@@ -167,3 +154,11 @@ except ImportError:
 
 if not DEBUG:
     django_heroku.settings(locals())
+
+# Mail
+
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_HOST_USER = "noreply.kaiseifes@gmail.com"
+EMAIL_HOST_PASSWORD = os.environ["150th_KOHO_GMAIL_PASSWORD"]
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
