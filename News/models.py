@@ -17,6 +17,7 @@ class News(models.Model):
     text = models.TextField(blank=False)
     datetime = models.DateTimeField(auto_now=True)
     tag = models.ManyToManyField(Tag)
+    is_important = models.BooleanField(blank=False)
 
     def __str__(self):
         return self.title
