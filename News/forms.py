@@ -6,7 +6,7 @@ from django_summernote.widgets import SummernoteWidget
 class NewsForm(ModelForm):
     class Meta:
         model = News
-        fields = ("title", "text", "tag",)
+        fields = ("title", "text", "tag", "is_important",)
         widgets = {
             "text": SummernoteWidget()
         }
