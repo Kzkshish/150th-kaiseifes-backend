@@ -145,7 +145,7 @@ MEDIA_URL = '/media/'
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 X_FRAME_OPTIONS = "SAMEORIGIN"
 
-DEBUG = False
+DEBUG = True
 
 try:
     from .local_settings import *
