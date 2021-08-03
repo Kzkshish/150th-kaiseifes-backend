@@ -145,15 +145,15 @@ MEDIA_URL = '/media/'
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 X_FRAME_OPTIONS = "SAMEORIGIN"
 
-DEBUG = False
+DEBUG = True
 
 try:
     from .local_settings import *
 except ImportError:
     pass
 
-if not DEBUG:
-    django_heroku.settings(locals())
+# if not DEBUG:
+    # django_heroku.settings(locals())
 
 # Mail
 load_dotenv(verbose=True)
