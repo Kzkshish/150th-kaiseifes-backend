@@ -25,8 +25,8 @@ class RegisterSubscribeAPIView(CreateAPIView):
         serializer = SubscriberSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.save()
-        send_mail(subject="150th開成祭 メルマガ登録のお知らせ", message=render_to_string("Subscribers/FirstTimeMail.html"),
-                  from_email="150th KaiseiFes HP", recipient_list=(request.data["email"],), html_message=render_to_string("Subscribers/FirstTimeMail.html"))
+        send_mail(subject="150th開成祭 メルマガ登録のお知らせ", message=render_to_string("FirstTimeMail.html"),
+                  from_email="150th KaiseiFes HP", recipient_list=(request.data["email"],), html_message=render_to_string("FirstTimeMail.html"))
         return Response(serializer.data, status=HTTP_201_CREATED)
 
 
