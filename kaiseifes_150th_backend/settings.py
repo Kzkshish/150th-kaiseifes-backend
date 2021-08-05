@@ -163,6 +163,8 @@ dotenv_path = os.path.join(os.path.dirname(
     "/Users/keigokanda/dev/kaiseifes_150th_backend/ignore_files/quick.py"), '.env')
 load_dotenv(dotenv_path)
 
+EMAIL_USE_TLS = True
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = "smtp.gmail.com"
 EMAIL_HOST_USER = "noreply.kaiseifes@gmail.com"
 EMAIL_HOST_PASSWORD = "55Vancouver"
