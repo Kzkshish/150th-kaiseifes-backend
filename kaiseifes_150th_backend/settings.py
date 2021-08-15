@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.humanize',
     "rest_framework",
     'widget_tweaks',
     'corsheaders',
@@ -87,9 +88,8 @@ ALLOWED_HOSTS = ["kaiseifes-150th-backend.herokuapp.com"]
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': "kaiseifes_150th_backend",
-
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
@@ -169,6 +169,7 @@ EMAIL_HOST = "smtp.gmail.com"
 EMAIL_HOST_USER = "noreply.kaiseifes@gmail.com"
 EMAIL_HOST_PASSWORD = "55Vancouver"
 EMAIL_PORT = 587
-EMAIL_USE_TLS = True
 
 CORS_ORIGIN_ALLOW_ALL = True
+
+LOGIN_REDIRECT_URL = "Sandans:waittime_update"
