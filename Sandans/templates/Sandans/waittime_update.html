@@ -2,26 +2,12 @@
 {% load widget_tweaks %}
 {% load static %}
 {% load humanize %}
-{% block title %}待ち時間を更新する | 広報係{% endblock %}
+{% block title %}待ち時間を更新{% endblock %}
 {% block content %}
 <link rel="stylesheet" href="{% static 'Sandans/waittime_update.css' %}">
-<header>
-    <div class="p-2 d-flex justify-content-between align-items-center">
-        <img src="{% static 'Sandans/icon.svg' %}" alt="" width="40">
-        <h2>待ち時間を更新</h2>
-        <img src="/media/{{request.user.icon}}" alt="" width="40" height="40">
-    </div>
-</header>
 <main>
-    {% if messages %}
-    <ul class="messages p-ls-1 p-md-2">
-        {% for message in messages %}
-        <li{% if message.tags %} class="alert alert-{{ message.tags }} alert-dismissible" role="alert" {% endif %}>{{ message }}<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></li>
-            {% endfor %}
-    </ul>
-    {% endif %}
     <div class="form-card col-xs-6 col-md-4 p-3 mx-auto mt-md-3">
-        <div class="d-flex justify-content-between flex-column flex-lg-row">
+        <div class="d-flex justify-content-between flex-column flex-lg-row mb-3">
             <p>&lt; <a href="{% url 'Sandans:login' %}">別の参団でログインする</a></p>
             {% if not alert %}
             <p style="color: rgba(0, 0, 0, 0.5);">最終更新：{{request.user.last_updated|naturaltime}}</p>

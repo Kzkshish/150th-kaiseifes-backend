@@ -5,8 +5,9 @@ from django.views.generic import UpdateView
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import get_object_or_404
-from django.urls import reverse_lazy
-from django.http import HttpResponseRedirect
+from django.urls import reverse_lazy, reverse
+from django.http import HttpResponseRedirect, HttpResponse
+
 from django.contrib.auth.views import LoginView
 
 from rest_framework.generics import ListAPIView
@@ -48,8 +49,9 @@ class SandanWaittimeOrderAPIView(ListAPIView):
         return Response(data=ret, status=HTTP_200_OK)
 
 
-class WaittimeUpdate(UpdateView, LoginRequiredMixin):
+class WaittimeUpdate(LoginRequiredMixin, UpdateView):
     template_name = "Sandans/waittime_update.html"
+    login_url = "/login"
     form_class = WaittimeUpdateForm
     success_url = reverse_lazy("Sandans:waittime_update")
 
@@ -59,8 +61,6 @@ class WaittimeUpdate(UpdateView, LoginRequiredMixin):
         return HttpResponseRedirect(self.get_success_url())
 
     def get_object(self, queryset=None):
-        if self.request.user.is_anonymous:
-            return redirect("Sandans:login")
         return get_object_or_404(Sandan, id=self.request.user.id)
 
     def get_context_data(self, **kwargs):
